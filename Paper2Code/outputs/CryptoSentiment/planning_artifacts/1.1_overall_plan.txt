@@ -1,0 +1,97 @@
+To effectively reproduce the experiments and methodologies described in the paper "Revisiting Financial Sentiment Analysis: A Language Model Approach," we need a clear and detailed plan that outlines the workflow, datasets, model configuration, training processes, and evaluation metrics. Here's a comprehensive plan that adheres strictly to the paper:
+
+---
+
+### **1. Methodology Overview**
+
+#### **A. Market-Driven Labeling Approach**
+- **Objective**: Replace subjective sentiment labels with market-derived labels that reflect real market movements.
+- **Triple Barrier Labeling (TBL)**:
+  - **Upper Barrier**: Set profit-taking price threshold for Bullish labels.
+  - **Lower Barrier**: Set stop-loss price threshold for Bearish labels.
+  - **Vertical Barrier**: Temporal constraint defining observation window (8 to 15 days).
+
+#### **B. Language Model Configuration**
+- **Models Used**: CryptoBERT and FinBERT as base models.
+- **Prompt Tuning**:
+  - Incorporate key market indicators such as the Rate of Change (ROC), Relative Strength Index (RSI), and historic market trends into textual prompts.
+  - Contextual prompts are created by embedding market and temporal context.
+
+### **2. Data Collection and Preparation**
+
+#### **A. Dataset Requirements**
+- **Bitcoin Historical Events**:
+  - 227 significant Bitcoin events from 2009 to 2024.
+  - Focus on impactful periods between 2015 and 2023.
+  - Obtain from Kaggle for reproducibility.
+- **Tweets Data**:
+  - Sources from PreBit and Kaggle from 2015 to early 2023.
+  - Used for model training and evaluation.
+
+#### **B. Preprocessing Steps**
+- Text normalization:
+  1. Lowercasing.
+  2. Removal of URLs, user IDs, and punctuation.
+  3. Extraction of emojis and hashtags.
+  4. Lemmatization for generalization.
+- **Technical Indicators**:
+  - Compute RSI and ROC from OHLCV data for prompt tuning.
+
+### **3. Experimental Setup**
+
+#### **A. Feature Engineering**
+- **Market-derived Label Assignment**:
+  - Use EWMA to estimate volatility.
+  - Calculate barriers based on historical volatility.
+  - Determine labels based on the TBL method dynamics.
+
+#### **B. Language Model Training**
+- **Fine-tuning Methodology**:
+  - Use 5-fold cross-validation.
+  - Train over 2 epochs as performance plateaus post this point.
+  - Use AdamW optimizer with learning rate \(10^{-5}\) and batch size of 12.
+
+### **4. Trading Signal Generation**
+
+#### **A. Signal Generation Methods**
+- **Majority and Mean Methods**:
+  - Aggregate tweet predictions by majority or average sentiment for generating day-end signals.
+  - Use confidence scores linked to position sizes.
+
+#### **B. Incorporation of Fusion Models**
+- **Price-based and Sentiment-based Models**:
+  - Compare results with LSTM and Autoencoder price-based models.
+  - Use a fusion model that incorporates sentiment predictions, and CA model aggregations.
+
+### **5. Backtesting Strategy**
+
+#### **A. Backtesting Environment**
+- Use strategies like TBL, In-Out Long/Short.
+- Conduct tests across different market regimes (Bullish, Bearish, Neutral).
+
+#### **B. Evaluation Metrics**
+- Key Performance Indicators (KPIs):
+  - Sharpe Ratio, Sortino Ratio, Max Drawdown.
+  - Profitability measures like cumulative return, daily return.
+- Tool for backtesting: Use vectorbt library for evaluation across market conditions.
+
+### **6. Evaluation and Comparison**
+
+#### **A. Classification Performance**
+- **Compare Models**:
+  - FinBERT, CryptoBERT, CA, and TCA performance on datasets \(E_a\) and \(E_b\).
+- **Metrics**:
+  - Precision, Recall, F1-Score under One-vs-Rest (OVR) and One-vs-One (OVO).
+
+#### **B. Analysis of Results**
+- Use SHAP values for interpretability.
+- Statistical validation of model improvements using t-tests.
+
+---
+
+### **Additional Notes:**
+- Ensure reproducibility via data sources and defined methodologies.
+- Address limitations such as overfitting risk with prompt engineering.
+- Consider adaptations for evolving market conditions and tweet pattern changes.
+
+This roadmap provides a structured approach to implement and scrutinize the described methodologies, ensuring that every aspect of the paper's experiment is covered and adheres closely to the reported procedures and results.

@@ -1,0 +1,49 @@
+----------------------------------------
+[Required packages]
+- pandas==1.3.3
+- tensorflow==2.6.0
+- numpy==1.21.2
+- scikit-learn==0.24.2
+- vectorbt==0.20.7
+- shap==0.39.0
+
+----------------------------------------
+[Required Other language third-party packages]
+- No third-party dependencies required
+
+----------------------------------------
+[Logic Analysis]
+- ['dataset_loader.py', 'Handles loading and preprocessing of Bitcoin historical events and tweet data from specified sources (e.g., Kaggle). Prepares data for further analysis.']
+- ['preprocessor.py', 'DataPreprocessing class implements methods to normalize text, handle missing values, and compute technical indicators like RSI and ROC.']
+- ['market_labeler.py', 'MarketLabeler class defines methods to apply the Triple Barrier Labeling (TBL) strategy to assign bullish, bearish, or neutral labels.']
+- ['model.py', 'Defines the Model classes for CryptoBERT and FinBERT, includes prompt tuning adjustments for integrating market context.']
+- ['trainer.py', 'Trainer class handles the model training process, utilizing data labeled by market behaviors, includes methods for managing training epochs and validation.']
+- ['evaluation.py', 'Evaluation class provides tools to measure model performance using metrics such as accuracy, precision, recall, and F1-score based on trading signal prediction.']
+- ['signal_generator.py', "SignalGenerator class creates trading signals using the trained model's predictions, also adjusts signals based on majority or mean methods."]
+- ['backtester.py', 'Backtester class uses vectorbt library to simulate trades and evaluate trading strategy performance across market conditions defined in the paper.']
+- ['main.py', 'Entry point for executing the whole program; coordinates data loading, preprocessing, model training, evaluation, signal generation, and backtesting.']
+
+----------------------------------------
+[Task list]
+- dataset_loader.py
+- preprocessor.py
+- market_labeler.py
+- model.py
+- trainer.py
+- evaluation.py
+- signal_generator.py
+- backtester.py
+- main.py
+
+----------------------------------------
+[Full API spec]
+
+
+----------------------------------------
+[Shared Knowledge]
+Both dataset_loader.py and preprocessor.py share a config module for reading data paths and preprocessing settings. Preprocessing settings are also shared between preprocessor.py and market_labeler.py.
+
+----------------------------------------
+[Anything UNCLEAR]
+Clarification needed on the specific encoding configurations used in prompt tuning and any detailed parameter settings for the market labeling algorithm.
+

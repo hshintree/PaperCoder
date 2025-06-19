@@ -1,0 +1,48 @@
+To implement the `MarketLabeler` class in `market_labeler.py`, we will focus on applying the Triple Barrier Labeling (TBL) strategy to financial data, specifically targeting Bitcoin market trends as outlined in the research paper. The TBL strategy will involve the calculation and application of upper, lower, and vertical barriers to assign labels to market trends as Bullish, Bearish, or Neutral.
+
+### **Logic Analysis for market_labeler.py**
+
+**1. Configuration Reference:**
+   - Use settings from `config.yaml` for TBL-related configurations.
+   - The `strategy` and `barrier_window` from the config are pivotal for defining how barriers are calculated and applied.
+
+**2. Class Structure:**
+   - **Class Name:** `MarketLabeler`
+   - **Constructor (`__init__`)**: Initialize with settings from the configuration.
+     - Input: `settings` (a dictionary containing configurations).
+     - Initialize parameters related to TBL, such as barrier factors and market volatility estimation method.
+
+**3. Method: `label_data()`**
+   - Purpose: To apply the TBL framework on given market data (e.g., Closing price data) to assign Bullish, Bearish, or Neutral labels.
+
+   - Input Parameter: `data (DataFrame)`
+     - Data should include closing prices and other necessary market indicators that might be needed for accurate volatility estimation and barrier calculations.
+
+   - Steps:
+     1. **Calculate Historical Volatility:** 
+        - Use an Exponentially Weighted Moving Average (EWMA) to calculate volatility. This is a rolling standard deviation of logarithmic returns.
+        - Use settings from `config.yaml` to get window length and decay factor.
+     
+     2. **Barrier Calculation:**
+        - **Upper Barrier (`U`)**: Determine using `Closing Price + (Volatility * Upper Barrier Factor)`.
+        - **Lower Barrier (`L`)**: Determine using `Closing Price - (Volatility * Lower Barrier Factor)`.
+        - **Vertical Barrier (`V`)**: A fixed number of days, ranging from 8 to 15 as specified.
+   
+     3. **Label Assignment:**
+        - Iterate over each window in the dataset:
+          - Assign a trend label based on which barrier is touched first within the Vertical Barrier limit:
+            - **Bullish**: If the price touches or surpasses `U` before `L` or `V`.
+            - **Bearish**: If the price drops to or below `L` before `U` or `V`.
+            - **Neutral**: If neither `U` nor `L` is touched by the expiry of `V`.
+        - Once a label is assigned, restart the process with newly updated barriers.
+
+   - Output: A `DataFrame` with market data enriched with labels.
+
+**4. Handling Edge Cases:**
+   - Ensure look-ahead bias is avoided by only using data up to the current point in time for calculations.
+   - Handle overlapping windows by recalculating barriers and adjusting to market conditions dynamically.
+
+**5. Integration with Other Modules:**
+   - This class's output will feed into the model training and evaluation pipeline, so ensure outputs are consistently logged and stored in paths specified by `config.yaml`.
+
+Overall, the `MarketLabeler` class is central for preparing data in a way that aligns market conditions with labeled events, helping in model training and signal generation. This, in turn, allows for the matching of market dynamics onto tweets, a novel aspect in the domain of sentiment analysis within financial markets. This alignment ensures the methodology strictly adheres to the approaches described in the research paper.

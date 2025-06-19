@@ -1,0 +1,66 @@
+### Logic Analysis for `preprocessor.py` in the Context of Financial Sentiment Analysis
+
+The `preprocessor.py` file is dedicated to implementing the `Preprocessor` class as specified in the design. This class will manage the preprocessing steps necessary to prepare the data for further analysis, particularly in the context of financial sentiment analysis using language models. Below is a comprehensive analysis of the logic required to implement this functionality, aligned with the research paper, plan, design, and given configuration.
+
+#### **1. Class Structure: `Preprocessor`**
+
+- **Initialization (`__init__`)**
+  - **Purpose**: Initialize the class with preprocessing settings from the configuration file.
+  - **Input**: A dictionary `settings` sourced from the `config.yaml` file.
+  - **Tasks**:
+    - Store `settings` as an instance variable.
+    - Validate and parse settings to ensure preprocessing steps and parameters (like RSI and ROC settings) are correctly defined.
+  
+#### **2. Methods**
+
+##### **A. `preprocess(data: DataFrame) -> DataFrame`**
+
+- **Purpose**: Apply a series of preprocessing steps to the input DataFrame (which can be tweet data or Bitcoin events) to make it suitable for model training and analysis.
+
+- **Steps**:
+  1. **Text Normalization**:
+     - **Lowercasing**: Convert all text in the tweets to lowercase to maintain uniformity.
+     - **Removing URLs**: Strip any URLs from the tweets to prevent noise from external links that don't contribute to sentiment.
+     - **Removing User IDs & Punctuation**: Remove user mentions and punctuation as they are generally non-informative for sentiment analysis.
+     - **Lemmatization**: Apply lemmatization to unify different forms of a word (e.g., running → run).
+
+  2. **Missing Values Handling**:
+     - Determine appropriate strategies for handling missing values — for instance, filling nulls with a placeholder or removing incomplete entries, depending on the data's structure and completeness.
+
+  3. **Technical Indicators Computation**:
+     - **RSI (Relative Strength Index)**:
+       - Calculate RSI using the OHLCV data present in the dataset.
+       - Use a rolling window length that aligns with the RSI computational standards.
+       - Apply the thresholds specified in `config.yaml` (30 and 70) to signal oversold and overbought conditions.
+
+     - **ROC (Rate of Change)**:
+       - Compute ROC over the specified window length (e.g., 8 days as mentioned in the configuration).
+       - Ensure the calculation aligns with traditional financial metrics to compare the current price to the price from a previous date.
+
+- **Output**: Return a preprocessed DataFrame ready for labeling and model input.
+
+#### **3. Integration with Other Components**
+
+- **Shared Configuration**: 
+  - Consistently utilize shared settings from the `config.yaml` file, ensuring consistency with implementations in `market_labeler.py`.
+
+- **DataFlow**: 
+  - The preprocessed output data serves as an input for the `MarketLabeler` class, which will apply the TBL strategy.
+  
+- **Performance Considerations**:
+  - Prioritize efficient vectorized operations for preprocessing to handle potentially large datasets efficiently.
+  - Implement comprehensive logging or debugging information to track preprocessing steps and any data issues.
+
+#### **4. Error Handling and Validation**
+
+- Introduce robust error handling to manage and log any inconsistencies or exceptions occurring during preprocessing (e.g., missing columns, invalid data types).
+- Validate input data to check for format compliance (e.g., ensuring necessary columns like text, date are present).
+
+#### **5. Testing and Evaluation**
+
+- Develop unit tests to ensure each preprocessing step functions correctly independently.
+- Include integration tests to validate the entire preprocessing sequence and its output validity.
+
+---
+
+By following the above logic analysis, the `preprocessor.py` script will ensure all data is prepared and consistent with the experimental setup described in the paper, maintaining the integrity and reproducibility of the sentiment analysis process. This aligns with the overarching goal of creating a robust pipeline to support the innovative financial sentiment methodologies outlined in the research.

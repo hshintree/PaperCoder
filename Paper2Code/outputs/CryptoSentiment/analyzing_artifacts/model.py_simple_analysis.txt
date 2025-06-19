@@ -1,0 +1,44 @@
+To develop the `model.py` module in the context of the described research paper and accompanying materials, we need to focus on defining classes for both CryptoBERT and FinBERT models. Additionally, we must incorporate prompt tuning features to effectively integrate market context into the models. Here's a structured logic analysis for implementing `model.py`:
+
+### Objective
+The primary objective of `model.py` is to establish the configuration and functionality of language models (CryptoBERT and FinBERT) tailored to predict financial market movements based on tweets. This involves utilizing market-derived labels and incorporating relevant market context through prompt engineering.
+
+### Class Definitions
+1. **Model Class for CryptoBERT and FinBERT**: 
+   - **Initialization**: Accepts a `params` dictionary containing model-specific settings such as model type, prompt tuning configurations, and training hyperparameters as defined in `config.yaml`.
+   - **Model Loading**: Load the respective pre-trained BERT model (`CryptoBERT` or `FinBERT`) using a library such as TensorFlow or Hugging Face's Transformers.
+   - **Prompt Tuning Adjustments**: Modify input data handling to incorporate prompt engineering. This involves adjusting the text input to integrate market indicators like ROC, RSI, and temporal context directly into the textual prompts.
+
+### Logic Flow
+1. **Initialize Model**:
+   - Use the `params` dictionary to select and configure the model:
+     - If `params['type']` is `CryptoBERT`, initialize with the CryptoBERT architecture.
+     - If `params['type']` is `FinBERT`, initialize with the FinBERT architecture.
+   - Configure the model for prompt tuning if `prompt_tuning` setting is `True`.
+
+2. **Preprocessing for Prompt Tuning**:
+   - Implement a method to handle the modification of tweet inputs by adding market context directly to the input text:
+     - Extract market-specific features, e.g., previous trends and technical indicators, as configured in `config.yaml`.
+     - Construct textual prompts incorporating these features (e.g., "Date: 2020, January, 01, Previous Label: bullish, ROC: neutral, RSI: bearish").
+
+3. **Forward Pass**:
+   - Define the `forward(x: Tensor)` method:
+     - Accepts input tensors representing processed tweet data with incorporated prompts.
+     - Passes the input through the language model to obtain output probabilities/embeddings.
+   - The model's output must align with the prediction of Bullish, Bearish, or Neutral sentiments based on the processed market-informed input prompts.
+
+4. **Training and Fine-tuning**:
+   - Integrate methods to freeze/unfreeze layers during fine-tuning based on the model type and optimization strategy:
+     - For example, freeze initial transformer layers to retain base knowledge of language structure and focus fine-tuning on market-specific prompts.
+   - Manage training based on configuration settings such as learning rate and epochs.
+
+5. **Integration with Other Modules**:
+   - The `model` class will be leveraged by `Trainer` module (`trainer.py`) for training execution and by `SignalGenerator` module (`signal_generator.py`) for signal prediction post-training.
+   - Ensure that model outputs are compatible with downstream processing by these modules.
+
+### Key Considerations
+- **Model Selection**: Ensure flexibility in switching between CryptoBERT and FinBERT based on the `model.type` setting.
+- **Prompt Tuning**: Precisely reflect the paper's methodology in embedding market context into textual data by supplementing prompts with relevant financial indicators.
+- **Config-Driven**: Use the configurations in `config.yaml` to drive model initialization and prompt adjustment logic to maintain reproducibility and alignment with the paper's experiment setup.
+
+By following this structured approach, `model.py` will effectively embody the methodologies described in the research paper, ensuring accurate and reproducible implementation aligned with market-driven labeling and context-aware predictions.

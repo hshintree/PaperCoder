@@ -1,0 +1,250 @@
+🌟 Usage Summary 🌟
+[Planning] Overall plan
+🛠️ Model: gpt-4o
+📥 Input tokens: 16177 (Cost: $0.04044250)
+📦 Cached input tokens: 0 (Cost: $0.00000000)
+📤 Output tokens: 975 (Cost: $0.00975000)
+💵 Current total cost: $0.05019250
+🪙 Accumulated total cost so far: $0.05019250
+============================================
+
+🌟 Usage Summary 🌟
+[Planning] Architecture design
+🛠️ Model: gpt-4o
+📥 Input tokens: 831 (Cost: $0.00207750)
+📦 Cached input tokens: 17024 (Cost: $0.02128000)
+📤 Output tokens: 708 (Cost: $0.00708000)
+💵 Current total cost: $0.03043750
+🪙 Accumulated total cost so far: $0.08063000
+============================================
+
+🌟 Usage Summary 🌟
+[Planning] Logic design
+🛠️ Model: gpt-4o
+📥 Input tokens: 813 (Cost: $0.00203250)
+📦 Cached input tokens: 18432 (Cost: $0.02304000)
+📤 Output tokens: 602 (Cost: $0.00602000)
+💵 Current total cost: $0.03109250
+🪙 Accumulated total cost so far: $0.11172250
+============================================
+
+🌟 Usage Summary 🌟
+[Planning] Overall plan
+🛠️ Model: gpt-4o
+📥 Input tokens: 49 (Cost: $0.00012250)
+📦 Cached input tokens: 16128 (Cost: $0.02016000)
+📤 Output tokens: 926 (Cost: $0.00926000)
+💵 Current total cost: $0.02954250
+🪙 Accumulated total cost so far: $0.02954250
+============================================
+
+🌟 Usage Summary 🌟
+[Planning] Architecture design
+🛠️ Model: gpt-4o
+📥 Input tokens: 782 (Cost: $0.00195500)
+📦 Cached input tokens: 17024 (Cost: $0.02128000)
+📤 Output tokens: 807 (Cost: $0.00807000)
+💵 Current total cost: $0.03130500
+🪙 Accumulated total cost so far: $0.06084750
+============================================
+
+🌟 Usage Summary 🌟
+[Planning] Logic design
+🛠️ Model: gpt-4o
+📥 Input tokens: 735 (Cost: $0.00183750)
+📦 Cached input tokens: 18560 (Cost: $0.02320000)
+📤 Output tokens: 579 (Cost: $0.00579000)
+💵 Current total cost: $0.03082750
+🪙 Accumulated total cost so far: $0.09167500
+============================================
+
+🌟 Usage Summary 🌟
+[Planning] Configuration file generation
+🛠️ Model: gpt-4o
+📥 Input tokens: 208 (Cost: $0.00052000)
+📦 Cached input tokens: 19840 (Cost: $0.02480000)
+📤 Output tokens: 300 (Cost: $0.00300000)
+💵 Current total cost: $0.02832000
+🪙 Accumulated total cost so far: $0.11999500
+============================================
+
+🌟 Usage Summary 🌟
+[ANALYSIS] dataset_loader.py
+🛠️ Model: gpt-4o
+📥 Input tokens: 18885 (Cost: $0.04721250)
+📦 Cached input tokens: 0 (Cost: $0.00000000)
+📤 Output tokens: 726 (Cost: $0.00726000)
+💵 Current total cost: $0.05447250
+🪙 Accumulated total cost so far: $0.17446750
+============================================
+
+🌟 Usage Summary 🌟
+[ANALYSIS] preprocessor.py
+🛠️ Model: gpt-4o
+📥 Input tokens: 64 (Cost: $0.00016000)
+📦 Cached input tokens: 18816 (Cost: $0.02352000)
+📤 Output tokens: 851 (Cost: $0.00851000)
+💵 Current total cost: $0.03219000
+🪙 Accumulated total cost so far: $0.20665750
+============================================
+
+🌟 Usage Summary 🌟
+[ANALYSIS] market_labeler.py
+🛠️ Model: gpt-4o
+📥 Input tokens: 71 (Cost: $0.00017750)
+📦 Cached input tokens: 18816 (Cost: $0.02352000)
+📤 Output tokens: 745 (Cost: $0.00745000)
+💵 Current total cost: $0.03114750
+🪙 Accumulated total cost so far: $0.23780500
+============================================
+
+🌟 Usage Summary 🌟
+[ANALYSIS] model.py
+🛠️ Model: gpt-4o
+📥 Input tokens: 61 (Cost: $0.00015250)
+📦 Cached input tokens: 18816 (Cost: $0.02352000)
+📤 Output tokens: 800 (Cost: $0.00800000)
+💵 Current total cost: $0.03167250
+🪙 Accumulated total cost so far: $0.26947750
+============================================
+
+🌟 Usage Summary 🌟
+[ANALYSIS] trainer.py
+🛠️ Model: gpt-4o
+📥 Input tokens: 63 (Cost: $0.00015750)
+📦 Cached input tokens: 18816 (Cost: $0.02352000)
+📤 Output tokens: 801 (Cost: $0.00801000)
+💵 Current total cost: $0.03168750
+🪙 Accumulated total cost so far: $0.30116500
+============================================
+
+🌟 Usage Summary 🌟
+[ANALYSIS] evaluation.py
+🛠️ Model: gpt-4o
+📥 Input tokens: 67 (Cost: $0.00016750)
+📦 Cached input tokens: 18816 (Cost: $0.02352000)
+📤 Output tokens: 894 (Cost: $0.00894000)
+💵 Current total cost: $0.03262750
+🪙 Accumulated total cost so far: $0.33379250
+============================================
+
+🌟 Usage Summary 🌟
+[ANALYSIS] signal_generator.py
+🛠️ Model: gpt-4o
+📥 Input tokens: 64 (Cost: $0.00016000)
+📦 Cached input tokens: 18816 (Cost: $0.02352000)
+📤 Output tokens: 684 (Cost: $0.00684000)
+💵 Current total cost: $0.03052000
+🪙 Accumulated total cost so far: $0.36431250
+============================================
+
+🌟 Usage Summary 🌟
+[ANALYSIS] backtester.py
+🛠️ Model: gpt-4o
+📥 Input tokens: 64 (Cost: $0.00016000)
+📦 Cached input tokens: 18816 (Cost: $0.02352000)
+📤 Output tokens: 759 (Cost: $0.00759000)
+💵 Current total cost: $0.03127000
+🪙 Accumulated total cost so far: $0.39558250
+============================================
+
+🌟 Usage Summary 🌟
+[ANALYSIS] main.py
+🛠️ Model: gpt-4o
+📥 Input tokens: 65 (Cost: $0.00016250)
+📦 Cached input tokens: 18816 (Cost: $0.02352000)
+📤 Output tokens: 816 (Cost: $0.00816000)
+💵 Current total cost: $0.03184250
+🪙 Accumulated total cost so far: $0.42742500
+============================================
+
+🌟 Usage Summary 🌟
+[CODING] dataset_loader.py
+🛠️ Model: gpt-4o
+📥 Input tokens: 19650 (Cost: $0.04912500)
+📦 Cached input tokens: 0 (Cost: $0.00000000)
+📤 Output tokens: 634 (Cost: $0.00634000)
+💵 Current total cost: $0.05546500
+🪙 Accumulated total cost so far: $0.48289000
+============================================
+
+🌟 Usage Summary 🌟
+[CODING] preprocessor.py
+🛠️ Model: gpt-4o
+📥 Input tokens: 20263 (Cost: $0.05065750)
+📦 Cached input tokens: 0 (Cost: $0.00000000)
+📤 Output tokens: 680 (Cost: $0.00680000)
+💵 Current total cost: $0.05745750
+🪙 Accumulated total cost so far: $0.54034750
+============================================
+
+🌟 Usage Summary 🌟
+[CODING] market_labeler.py
+🛠️ Model: gpt-4o
+📥 Input tokens: 1723 (Cost: $0.00430750)
+📦 Cached input tokens: 19072 (Cost: $0.02384000)
+📤 Output tokens: 689 (Cost: $0.00689000)
+💵 Current total cost: $0.03503750
+🪙 Accumulated total cost so far: $0.57538500
+============================================
+
+🌟 Usage Summary 🌟
+[CODING] model.py
+🛠️ Model: gpt-4o
+📥 Input tokens: 2914 (Cost: $0.00728500)
+📦 Cached input tokens: 18560 (Cost: $0.02320000)
+📤 Output tokens: 799 (Cost: $0.00799000)
+💵 Current total cost: $0.03847500
+🪙 Accumulated total cost so far: $0.61386000
+============================================
+
+🌟 Usage Summary 🌟
+[CODING] trainer.py
+🛠️ Model: gpt-4o
+📥 Input tokens: 1721 (Cost: $0.00430250)
+📦 Cached input tokens: 20352 (Cost: $0.02544000)
+📤 Output tokens: 1059 (Cost: $0.01059000)
+💵 Current total cost: $0.04033250
+🪙 Accumulated total cost so far: $0.65419250
+============================================
+
+🌟 Usage Summary 🌟
+[CODING] evaluation.py
+🛠️ Model: gpt-4o
+📥 Input tokens: 3462 (Cost: $0.00865500)
+📦 Cached input tokens: 19712 (Cost: $0.02464000)
+📤 Output tokens: 634 (Cost: $0.00634000)
+💵 Current total cost: $0.03963500
+🪙 Accumulated total cost so far: $0.69382750
+============================================
+
+🌟 Usage Summary 🌟
+[CODING] signal_generator.py
+🛠️ Model: gpt-4o
+📥 Input tokens: 2743 (Cost: $0.00685750)
+📦 Cached input tokens: 20864 (Cost: $0.02608000)
+📤 Output tokens: 1347 (Cost: $0.01347000)
+💵 Current total cost: $0.04640750
+🪙 Accumulated total cost so far: $0.74023500
+============================================
+
+🌟 Usage Summary 🌟
+[CODING] backtester.py
+🛠️ Model: gpt-4o
+📥 Input tokens: 2507 (Cost: $0.00626750)
+📦 Cached input tokens: 22528 (Cost: $0.02816000)
+📤 Output tokens: 920 (Cost: $0.00920000)
+💵 Current total cost: $0.04362750
+🪙 Accumulated total cost so far: $0.78386250
+============================================
+
+🌟 Usage Summary 🌟
+[CODING] main.py
+🛠️ Model: gpt-4o
+📥 Input tokens: 4053 (Cost: $0.01013250)
+📦 Cached input tokens: 21888 (Cost: $0.02736000)
+📤 Output tokens: 717 (Cost: $0.00717000)
+💵 Current total cost: $0.04466250
+🪙 Accumulated total cost so far: $0.82852500
+============================================
+

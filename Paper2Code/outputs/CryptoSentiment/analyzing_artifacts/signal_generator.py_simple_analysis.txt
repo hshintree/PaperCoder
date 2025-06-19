@@ -1,0 +1,50 @@
+The goal of the `signal_generator.py` module is to create a robust Signal Generator class that can transform the predictions of the trained language model, optimized through market-derived labeling strategies, into actionable trading signals. This transformation is crucial for converting textual sentiment analyses into market trading decisions.
+
+### Key Objectives
+
+1. **Signal Creation**: Convert model predictions for tweets into daily trading signals.
+2. **Signal Aggregation**: Use majority and mean methods to determine the overall sentiment signal for a trading day.
+3. **Confidence Calculation**: Generate confidence scores tied to the signal strength, which will influence trading decision sizes.
+4. **Integration with Model Predictions**: Ensure compatibility with trained model outputs to collect and analyze predictions accurately.
+
+### Main Components of SignalGenerator Class
+
+1. **Initialization (`__init__`)**
+   - Initialize with the trained model and settings from the configuration file (i.e., whether to apply majority or mean methods).
+   - Store relevant indicators like ROC and RSI thresholds for use in prompts, sourced and preprocessed from `config.yaml`.
+
+2. **Data Preparation**
+   - **Input**: Preprocessed tweet data, enriched with technical indicators.
+   - **Output**: Aggregated daily signals representing bullish, bearish, or neutral positions.
+
+3. **Signal Generation Methods**
+   - **Majority Method**:
+     - Count predictions across all tweets in a single day.
+     - Determine the dominant sentiment (Bullish, Bearish, or Neutral) by comparing count proportions.
+     - Record the dominant class as the daily signal.
+   
+   - **Mean Method**:
+     - Assign numerical class values for each sentiment: Bearish = 0, Neutral = 1, Bullish = 2.
+     - Calculate the mean value for each day’s predictions.
+     - Use predefined thresholds (optimized periodically) to assess sentiment strength and direction.
+
+4. **Confidence Calculation**
+   - For both signal generation methods, calculate a confidence score reflecting the relative strength of the identified signal.
+   - Ensure confidence scores are normalized to a 0 to 1 scale for consistency across different time frames and market conditions.
+
+5. **Signal Output**
+   - Produce a DataFrame with daily signals and confidence scores, ready for backtesting or direct market application.
+
+### Integration with Other Components
+
+- **Model Predictions**: Capture and utilize the forward pass results from the trained Model class to extract Bullish, Bearish, and Neutral probabilities.
+- **Data Flow**: Ensure compatibility with the main sequence outlined in `main.py`; signals generated perform effectively in the backtesting phase.
+- **Predictions Utilization**: Leverage predictions from the Evaluation module to test various aggregation methods and optimize signal strength and accuracy.
+
+### Logic Considerations
+
+- Ensure coherent transformation of raw, preprocessed predictions into structured, reliable trading signals.
+- Handle edge cases, such as days with evenly split sentiment or no significant sentiment, with default confidence or neutral positioning.
+- Utilize techniques to periodically optimize aggregation method thresholds to fit evolving market dynamics, respecting the configuration settings from `config.yaml`.
+
+By adhering to this analytical framework, the `signal_generator.py` logic will faithfully execute the transformation of sentiment predictions into actionable trading signals, ensuring alignment with the overall research goals and experimental structures laid out in the paper. Each function and method within this class will directly contribute to the rigorous assessment and deployment of trading strategies backed by language model insights.

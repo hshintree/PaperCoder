@@ -1,0 +1,59 @@
+### Logic Analysis for `main.py`
+
+The `main.py` serves as the central coordination point for running the entire pipeline described in the research paper. Its primary responsibility is to orchestrate the sequence of operations, manage dependencies between modules, and ensure correct data flow throughout the system. Here's a detailed breakdown of the logic needed to implement the functionalities in `main.py`:
+
+---
+
+#### Step-by-Step Logic
+
+1. **Initialization and Configurations**
+   - Load configuration settings from `config.yaml`. This includes model parameters, data paths, training, and preprocessing options, market labeling strategy details, etc.
+   - Initialize logging for the entire pipeline to capture process details and any errors.
+
+2. **Data Loading**
+   - Create an instance of the `DatasetLoader` class, passing the loaded configuration as an argument.
+   - Call `load_event_data()` and `load_tweet_data()` methods to retrieve Bitcoin historical events and tweets data.
+   - Store returned DataFrames for further processing.
+
+3. **Data Preprocessing**
+   - Instantiate the `Preprocessor` class with the necessary preprocessing settings.
+   - Process the loaded datasets (events and tweets) using the `preprocess(data: DataFrame)` method to clean and normalize the data according to the specified steps (e.g., lowercasing, URL removal).
+
+4. **Market-Derived Labeling**
+   - Instantiate the `MarketLabeler` class using configuration-based settings to initialize the Triple Barrier Labeling strategy.
+   - Apply the `label_data()` method to the preprocessed event data to generate market labels (Bullish, Bearish, Neutral) using TBL dynamics.
+
+5. **Model Initialization and Training**
+   - Initialize the `Model` class as per the type specified in the configuration (CryptoBERT).
+   - Create a `Trainer` object, providing it with the initialized model and labeled event DataFrame.
+   - Call the `train()` method for model training over specified epochs, adapting to current infrastructure (using GPU if available for efficiency).
+
+6. **Model Evaluation**
+   - Instantiate the `Evaluation` class with the trained model and labeled data.
+   - Execute the `evaluate()` method to measure the model's performance using metrics like accuracy, precision, recall, and F1-score.
+
+7. **Signal Generation**
+   - Using the trained model, create an instance of the `SignalGenerator` initialized with model and signaling settings.
+   - Run `generate_signals()` on preprocessed tweets to produce trading signals based on the majority or mean methods. This involves using model predictions to define market positions.
+
+8. **Backtesting**
+   - Initialize the `Backtester` class with the generated signals and backtesting configuration from `vectorbt` library.
+   - Conduct backtesting via the `run_backtest()` method across different market regimes (Bullish, Bearish, Neutral), evaluating the performance using Sharpe and Sortino ratios, among others.
+
+9. **Output Results**
+   - Collect and summarize the results from evaluation and backtesting steps.
+   - Save the processed data and outputs in designated output paths as specified in the configuration file.
+   - Log the completion and key performance indicators (KPIs) for assessment and validation of the study.
+
+---
+
+### Key Considerations
+
+- **Sequential Dependencies**: Ensure that each step's output is available and suitable for the following steps.
+- **Configuration Management**: Rely heavily on `config.yaml` for setting parameters to maintain consistency and reproducibility across runs.
+- **Error Handling**: Incorporate try-except blocks to handle any exceptions during data processing, model training, and evaluation to secure robustness.
+- **Documentation**: Maintain comprehensive comments and logging throughout `main.py` to facilitate debugging, auditing, and iterative improvements.
+
+By following this structured approach, the main entry point can effectively manage the workflow described in the paper while ensuring experimental fidelity and clarity, adhering closely to each implementation phase defined.
+
+This analysis captures the essence and complex interactions of the program logic necessary for orchestrating the experiment repeatable in the research context.
